@@ -4,7 +4,7 @@ VJ Interiors is a high-performance, animation-rich frontend application designed
 
 ---
 
-## 🏗️ Architecture & Technology Stack
+## Architecture & Technology Stack
 
 The application is built using a modern React toolchain, emphasizing component isolation, CSS performance, and hardware-accelerated animations.
 
@@ -22,7 +22,7 @@ The application is built using a modern React toolchain, emphasizing component i
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 The repository follows a scalable, feature-based directory structure:
 
@@ -44,7 +44,7 @@ src/
 
 ---
 
-## 🎨 Design System
+## Design System
 
 The application relies on a strict design system defined in `src/styles/variables.css`. No hardcoded values (magic numbers) are used in component styles.
 
@@ -57,7 +57,7 @@ The application relies on a strict design system defined in `src/styles/variable
 
 ---
 
-## ⚡ Performance & Optimization
+## Performance & Optimization
 
 - **Asset Delivery**: All heavy imagery is served via high-performance CDNs (e.g., Unsplash) with optimized query parameters (`q=85`, `w=1920`) and native lazy loading.
 - **CSS Modularity**: The use of CSS Modules ensures that only the CSS required for the rendered components is injected into the DOM, minimizing render-blocking resources.
@@ -65,7 +65,7 @@ The application relies on a strict design system defined in `src/styles/variable
 
 ---
 
-## 🚀 Setup & Deployment
+## Setup & Deployment
 
 ### Local Development
 
@@ -96,7 +96,7 @@ The project requires zero additional configuration for modern PaaS providers.
 
 ---
 
-## 📱 Browser Support & Responsiveness
+## Browser Support & Responsiveness
 
 The application is fully responsive and tested across standard viewport breakpoints:
 - **Desktop**: 1440px+
