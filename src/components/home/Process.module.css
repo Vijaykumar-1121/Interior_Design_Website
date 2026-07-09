@@ -141,16 +141,12 @@
     padding: var(--sp-6) 0;
   }
 
-  /* Hide empty right half — always show left slot content */
-  .half:last-child { display: none; }
-
-  /* Left half takes full width, left-aligned */
-  .half:first-child {
+  /* Map both halves to column 2. The empty one will take up no space. */
+  .half {
     display: block;
     padding: 0;
     grid-column: 2;
     grid-row: 1;
-    text-align: left;
   }
 
   /* Node column stays on left */
@@ -165,6 +161,9 @@
   /* Force right-aligned steps to also render left on mobile */
   .stepLeft,
   .stepRight { text-align: left; }
+  
+  .stepLeft .stepBody,
+  .stepRight .stepBody { margin-left: 0; margin-right: auto; }
 
   .node { width: 44px; height: 44px; font-size: var(--text-sm); }
 
