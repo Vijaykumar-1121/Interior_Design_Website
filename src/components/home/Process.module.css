@@ -1,0 +1,172 @@
+.section {
+  padding: var(--section-py) 0;
+  background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-bg-alt) 50%, var(--color-bg) 100%);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  position: relative;
+  overflow: hidden;
+}
+
+.section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(212, 175, 106, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+  filter: blur(80px);
+}
+
+/* ── Timeline ───────────────────────────────────────────── */
+.timeline {
+  position: relative;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+/* Static background line */
+.lineBg {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--color-border-mid);
+  z-index: 0;
+}
+
+/* Animated gold fill line */
+.lineActive {
+  width: 100%;
+  background: linear-gradient(
+    to bottom,
+    var(--color-accent) 0%,
+    rgba(200,160,90,0.25) 100%
+  );
+  transform-origin: top;
+  border-radius: 2px;
+}
+
+/* ── Steps ──────────────────────────────────────────────── */
+.steps {
+  position: relative;
+  z-index: 1;
+}
+
+.stepRow {
+  display: grid;
+  grid-template-columns: 1fr 80px 1fr;
+  align-items: center;
+  min-height: 180px;
+}
+
+.half {
+  padding: var(--sp-10) var(--sp-10);
+}
+
+/* ── Step content ───────────────────────────────────────── */
+.step { will-change: opacity, transform; }
+
+.stepLeft  { text-align: right; }
+.stepRight { text-align: left; }
+
+.stepTitle {
+  font-family: var(--font-display);
+  font-size: clamp(1.875rem, 3.2vw, 2.75rem);
+  font-weight: 500;
+  color: var(--color-text);
+  margin-bottom: var(--sp-4);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.stepBody {
+  font-size: var(--text-base);
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  max-width: 360px;
+}
+
+.stepLeft .stepBody {
+  margin-left: auto;
+}
+
+.stepRight .stepBody {
+  margin-right: auto;
+}
+
+/* ── Centre node ────────────────────────────────────────── */
+.nodeWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.node {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--color-bg-alt);
+  border: 2px solid var(--color-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 500;
+  color: var(--color-accent);
+  /* Knockout ring hides the line track behind the node */
+  box-shadow: 0 0 0 12px var(--color-bg-alt), 0 4px 20px rgba(212, 175, 106, 0.15);
+  flex-shrink: 0;
+  transition: all var(--t-normal);
+}
+
+.stepRow:hover .node {
+  background: var(--color-accent);
+  color: var(--color-bg-deep);
+  transform: scale(1.1);
+  box-shadow: 0 0 0 12px var(--color-bg-alt), 0 8px 32px rgba(212, 175, 106, 0.35);
+}
+
+/* ── Mobile: left-aligned single column ────────────────── */
+@media (max-width: 680px) {
+  .stepRow {
+    grid-template-columns: 52px 1fr;
+    min-height: auto;
+    padding: var(--sp-6) 0;
+  }
+
+  /* Hide empty right half — always show left slot content */
+  .half:last-child { display: none; }
+
+  /* Left half takes full width, left-aligned */
+  .half:first-child {
+    display: block;
+    padding: 0;
+    grid-column: 2;
+    grid-row: 1;
+    text-align: left;
+  }
+
+  /* Node column stays on left */
+  .nodeWrap {
+    grid-column: 1;
+    grid-row: 1;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-top: 4px;
+  }
+
+  /* Force right-aligned steps to also render left on mobile */
+  .stepLeft,
+  .stepRight { text-align: left; }
+
+  .node { width: 44px; height: 44px; font-size: var(--text-sm); }
+
+  .lineBg { left: 22px; transform: none; }
+}

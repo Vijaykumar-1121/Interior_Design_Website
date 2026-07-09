@@ -1,0 +1,192 @@
+/* ── Shell ──────────────────────────────────────────────── */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  min-height: 700px;
+  display: flex;
+  align-items: flex-end;   /* content sits on bottom third */
+  overflow: hidden;
+  background: var(--color-bg-deep);
+}
+
+/* ── Background image ───────────────────────────────────── */
+.bgImage {
+  position: absolute;
+  inset: 0;
+  transform: scale(1.08); /* headroom for parallax */
+  will-change: transform;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 25%;
+}
+
+/* Multi-layer gradient — strong bottom-up dark, softer top-left editorial vignette */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to top,
+      rgba(6,5,4,0.98) 0%,
+      rgba(6,5,4,0.72) 30%,
+      rgba(6,5,4,0.25) 55%,
+      rgba(6,5,4,0.40) 100%),
+    linear-gradient(120deg,
+      rgba(6,5,4,0.65) 0%,
+      transparent 60%);
+}
+
+/* ── Ambient floating orbs ──────────────────────────────── */
+/* Subtle radial glows that make the hero feel "alive" */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(80px);
+  opacity: 0;           /* GSAP fades these in after load */
+  will-change: transform, opacity;
+}
+.orb1 {
+  width: 600px;
+  height: 600px;
+  top: -100px;
+  right: -80px;
+  background: radial-gradient(circle, rgba(200,160,90,0.18) 0%, transparent 70%);
+}
+.orb2 {
+  width: 400px;
+  height: 400px;
+  bottom: 20%;
+  left: 10%;
+  background: radial-gradient(circle, rgba(200,160,90,0.10) 0%, transparent 70%);
+}
+
+/* ── Thin horizontal rule — editorial accent ────────────── */
+.rule {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right,
+    var(--color-accent) 0%,
+    transparent 60%
+  );
+  opacity: 0.25;
+}
+
+/* ── Content ────────────────────────────────────────────── */
+.content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding-bottom: clamp(3rem, 7vw, 6rem);
+  padding-top: var(--nav-h);
+}
+
+/* ── Main title ─────────────────────────────────────────── */
+.titleWrap {
+  overflow: visible;
+  margin-bottom: clamp(2rem, 4vw, 3.5rem);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 9vw, 9rem);
+  font-weight: 300;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+  text-transform: uppercase;
+}
+
+/* Each line clips words for the reveal animation */
+.lineWrap {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  padding-bottom: 0.07em;
+}
+
+.word {
+  display: inline-block;
+  will-change: transform, opacity;
+  white-space: pre;
+}
+
+/* Italic accent on the second line */
+.titleItalic {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--color-accent-light);
+}
+
+/* ── Bottom meta row: description left, CTA right ──────── */
+.meta {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--sp-8);
+  opacity: 0; /* GSAP */
+}
+
+.subtitle {
+  font-size: var(--text-base);
+  font-weight: 400;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  max-width: 480px;
+  letter-spacing: 0.005em;
+}
+
+.ctaGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--sp-4);
+  flex-shrink: 0;
+}
+
+/* ── Scroll cue ─────────────────────────────────────────── */
+.scrollCue {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  color: var(--color-text-dim);
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  will-change: transform;
+}
+
+.scrollLine {
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: currentColor;
+  transform-origin: left;
+  /* GSAP animates scaleX 0→1 */
+}
+
+/* ── Responsive ─────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .hero { align-items: flex-end; }
+
+  .meta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .ctaGroup {
+    align-items: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .scrollCue { display: none; }
+}

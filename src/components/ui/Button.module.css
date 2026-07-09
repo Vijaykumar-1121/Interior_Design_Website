@@ -1,0 +1,101 @@
+.btn {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  position: relative;
+  /* Allow overflow to be hidden for the fill effect */
+  overflow: hidden;
+  border-radius: var(--r-sm);
+  transition: transform var(--t-fast);
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+/* The wrapper that holds text + the sliding fill layer */
+.inner {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  padding: 0.85em 2em;
+  position: relative;
+  z-index: 1;
+  transition: color var(--t-normal);
+}
+
+/* The fill layer — starts below, slides up on hover */
+.fill {
+  position: absolute;
+  inset: 0;
+  transform: translateY(101%);
+  transition: transform var(--t-normal);
+  z-index: -1;
+  border-radius: var(--r-sm);
+}
+
+.btn:hover .fill {
+  transform: translateY(0);
+}
+
+/* ── Variant: primary (ivory fill, dark text) ───────────── */
+.primary .inner {
+  color: var(--color-bg-deep);
+  background-color: var(--color-text);
+  box-shadow: var(--shadow-sm);
+}
+.primary .fill {
+  background: linear-gradient(135deg, var(--color-accent-light), var(--color-accent));
+}
+.primary:hover .inner {
+  color: var(--color-bg-deep);
+  box-shadow: var(--shadow-accent);
+}
+
+/* ── Variant: outline (border on dark bg) ───────────────── */
+.outline {
+  border: 1px solid var(--color-border);
+  border-radius: var(--r-sm);
+}
+.outline .inner {
+  color: var(--color-text);
+}
+.outline .fill {
+  background-color: var(--color-text);
+}
+.outline:hover .inner {
+  color: var(--color-bg);
+}
+
+/* ── Variant: outlineGold (brass border) ────────────────── */
+.outlineGold {
+  border: 1px solid var(--color-accent);
+  border-radius: var(--r-sm);
+}
+.outlineGold .inner {
+  color: var(--color-accent);
+}
+.outlineGold .fill {
+  background-color: var(--color-accent);
+}
+.outlineGold:hover .inner {
+  color: var(--color-bg);
+}
+
+/* ── Variant: ghost (underline text link) ───────────────── */
+.ghost .inner {
+  padding: 0;
+  color: var(--color-text);
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 0.1em;
+}
+.ghost .fill { display: none; }
+.ghost:hover .inner { color: var(--color-accent); }

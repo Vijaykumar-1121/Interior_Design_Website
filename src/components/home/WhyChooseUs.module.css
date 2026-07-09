@@ -1,0 +1,143 @@
+.section {
+  padding: var(--section-py) 0;
+  background: var(--color-bg-alt);
+  border-top: 1px solid var(--color-border);
+}
+
+/* ── 3-column Bento Grid ──────────────────────────────── */
+.bentoGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: minmax(280px, auto);
+  gap: var(--sp-6);
+  padding-bottom: var(--sp-12);
+}
+
+@media (max-width: 992px) {
+  .bentoGrid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .bentoGrid { grid-template-columns: 1fr; }
+}
+
+/* ── Bento Card ─────────────────────────────────────────── */
+.bentoCard {
+  position: relative;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Featured card spans 2 columns */
+.featuredCard {
+  grid-column: span 2;
+}
+
+@media (max-width: 992px) {
+  .featuredCard { grid-column: span 2; }
+}
+
+@media (max-width: 640px) {
+  .featuredCard { grid-column: span 1; }
+}
+
+.bentoCard:hover {
+  transform: translateY(-6px);
+  border-color: var(--color-accent);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+  z-index: 2;
+}
+
+/* Ambient inner glow on hover */
+.bentoCard::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 100% 100%, rgba(200, 160, 90, 0.12) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.bentoCard:hover::after { opacity: 1; }
+
+.cardInner {
+  position: relative;
+  padding: var(--sp-10) var(--sp-10);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  z-index: 1;
+}
+
+/* ── Large ghost number — decorative ────────────────────── */
+.cardNum {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  font-family: var(--font-display);
+  font-size: clamp(6rem, 8vw, 10rem);
+  font-weight: 200;
+  color: var(--color-accent);
+  opacity: 0.04;
+  line-height: 1;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
+}
+
+.bentoCard:hover .cardNum {
+  opacity: 0.1;
+  transform: scale(1.05) translate(-10px, 10px);
+}
+
+/* ── Icon wrapper ───────────────────────────────────────── */
+.iconWrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 12px;
+  background: rgba(200, 160, 90, 0.08);
+  color: var(--color-accent);
+  flex-shrink: 0;
+  margin-bottom: auto; /* Pushes content down */
+  transition: background-color 0.4s ease, transform 0.4s ease;
+}
+
+.bentoCard:hover .iconWrap {
+  background: var(--color-accent);
+  color: var(--color-bg);
+  transform: scale(1.1);
+}
+
+/* ── Text Content ───────────────────────────────────────── */
+.cardContent {
+  margin-top: var(--sp-12);
+  transition: transform 0.4s ease;
+}
+
+.bentoCard:hover .cardContent {
+  transform: translateY(-4px);
+}
+
+.cardTitle {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 500;
+  color: var(--color-text);
+  line-height: 1.2;
+  margin-bottom: var(--sp-4);
+  letter-spacing: 0.02em;
+}
+
+.cardBody {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}

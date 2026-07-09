@@ -1,0 +1,31 @@
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(201, 169, 110, 0.7);
+  pointer-events: none;
+  z-index: 99999;
+  mix-blend-mode: normal;
+  transition: width 0.3s var(--ease-out-expo),
+              height 0.3s var(--ease-out-expo),
+              background-color 0.3s var(--ease-out-expo),
+              border-color 0.3s var(--ease-out-expo),
+              opacity 0.3s ease;
+  will-change: transform;
+}
+
+/* Enlarged state when hovering interactive elements */
+:global(body.cursor-hover) .cursor {
+  width: 52px;
+  height: 52px;
+  background-color: rgba(201, 169, 110, 0.1);
+  border-color: var(--color-accent);
+}
+
+/* Hide on touch / pointer-coarse devices */
+@media (hover: none), (pointer: coarse) {
+  .cursor { display: none; }
+}

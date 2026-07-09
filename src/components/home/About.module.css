@@ -1,0 +1,146 @@
+.section {
+  padding: clamp(5rem, 10vw, 8rem) 0;
+  background: var(--color-bg-alt);
+  position: relative;
+  overflow: hidden;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(4rem, 8vw, 6rem);
+}
+
+/* ── Top Row (3 columns) ────────────────────────────────── */
+.topRow {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-12);
+}
+
+@media (min-width: 1024px) {
+  .topRow {
+    grid-template-columns: 1fr 1.3fr 1fr;
+    gap: var(--sp-12);
+  }
+}
+
+.imageCol {
+  position: relative;
+}
+
+.imageFrame {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+}
+
+.img {
+  width: 100%;
+  height: 120%;
+  object-fit: cover;
+  object-position: center;
+  will-change: transform;
+}
+
+.titleCol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  /* The mock pushes this slightly down */
+  padding-top: var(--sp-6);
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--color-accent);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+}
+
+.textCol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-6);
+  padding-top: var(--sp-6);
+}
+
+.body {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: 1.8;
+}
+
+.signatureWrap {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--sp-2);
+  padding-top: var(--sp-10);
+}
+
+.signatureSvg {
+  width: 140px;
+  height: auto;
+  color: var(--color-accent);
+}
+
+.signatureName {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+/* ── Bottom Row (4 columns) ─────────────────────────────── */
+.bottomRow {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-12) var(--sp-6);
+}
+
+@media (min-width: 900px) {
+  .bottomRow {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.statNum {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 4.5vw, 3.5rem);
+  font-weight: 300;
+  color: var(--color-accent);
+  line-height: 1;
+}
+
+.suffix {
+  font-size: 0.6em;
+  color: var(--color-text);
+  font-weight: 400;
+  margin-top: 0.12em;
+}
+
+.statLabel {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
